@@ -61,7 +61,7 @@ export default function AdminProductForm({ initialData, onSuccess }: AdminProduc
                 setVariables([]);
             }
         } catch (err) {
-            setError('Error saving product');
+            setError('Ошибка сохранения товара');
         } finally {
             setLoading(false);
         }
@@ -70,26 +70,26 @@ export default function AdminProductForm({ initialData, onSuccess }: AdminProduc
     return (
         <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 space-y-6">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                {initialData ? 'Edit Product' : 'Create New Product'}
+                {initialData ? 'Редактировать товар' : 'Создать новый товар'}
             </h2>
 
             {error && <div className="text-red-500 bg-red-50 p-3 rounded-md">{error}</div>}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Название товара</label>
                     <input
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-400"
-                        placeholder="e.g. Rectangular Duct"
+                        placeholder="Напр. Прямоугольный воздуховод"
                         required
                     />
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Photo URL</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Ссылка на фото (URL)</label>
                     <input
                         type="text"
                         value={photoUrl}
@@ -102,13 +102,13 @@ export default function AdminProductForm({ initialData, onSuccess }: AdminProduc
 
             <div>
                 <div className="flex justify-between items-center mb-2">
-                    <label className="block text-sm font-medium text-gray-700">Variables</label>
+                    <label className="block text-sm font-medium text-gray-700">Переменные</label>
                     <button
                         type="button"
                         onClick={addVariable}
                         className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700 font-medium"
                     >
-                        <Plus size={16} /> Add Variable
+                        <Plus size={16} /> Добавить переменную
                     </button>
                 </div>
 
@@ -120,18 +120,18 @@ export default function AdminProductForm({ initialData, onSuccess }: AdminProduc
                                     type="text"
                                     value={v.name}
                                     onChange={(e) => updateVariable(index, 'name', e.target.value)}
-                                    placeholder="Var Name (e.g. A)"
+                                    placeholder="Имя переменной (напр. A)"
                                     className="w-full p-2 text-sm border border-gray-300 rounded-md text-gray-900 placeholder-gray-400"
                                     required
                                 />
-                                <p className="text-xs text-gray-500 mt-1">Used in formula</p>
+                                <p className="text-xs text-gray-500 mt-1">Используется в формуле</p>
                             </div>
                             <div className="flex-1">
                                 <input
                                     type="text"
                                     value={v.label}
                                     onChange={(e) => updateVariable(index, 'label', e.target.value)}
-                                    placeholder="Label (e.g. Width)"
+                                    placeholder="Метка (напр. Ширина)"
                                     className="w-full p-2 text-sm border border-gray-300 rounded-md text-gray-900 placeholder-gray-400"
                                     required
                                 />
@@ -147,27 +147,27 @@ export default function AdminProductForm({ initialData, onSuccess }: AdminProduc
                     ))}
                     {variables.length === 0 && (
                         <p className="text-sm text-gray-400 italic text-center py-4 bg-gray-50 rounded-lg border border-dashed border-gray-200">
-                            No variables defined. Click "Add Variable" to start.
+                            Переменные не заданы. Нажмите "Добавить переменную".
                         </p>
                     )}
                 </div>
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Formula</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Формула расчета</label>
                 <div className="relative">
                     <textarea
                         value={formula}
                         onChange={(e) => setFormula(e.target.value)}
                         className="w-full p-4 bg-gray-900 text-green-400 font-mono rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="e.g. (A + B) * 2 * length"
+                        placeholder="Напр. (A + B) * 2 * length"
                         rows={3}
                         required
                     />
                     <p className="text-xs text-gray-500 mt-2">
-                        Use variable names defined above + standard math operators (+, -, *, /, ^, etc).<br />
-                        <b>PI</b> is available as a constant (3.14).<br />
-                        Example: <code>width * height * PI</code>
+                        Используйте имена переменных выше + мат. операторы (+, -, *, /, ^ и др).<br />
+                        <b>PI</b> доступна как константа (3.14).<br />
+                        Пример: <code>width * height * PI</code>
                     </p>
                 </div>
             </div>
@@ -178,7 +178,7 @@ export default function AdminProductForm({ initialData, onSuccess }: AdminProduc
                 className="w-full flex justify-center items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg font-medium transition-all shadow-md active:scale-[0.98]"
             >
                 <Save size={20} />
-                {loading ? 'Saving...' : 'Save Product'}
+                {loading ? 'Сохранение...' : 'Сохранить товар'}
             </button>
         </form>
     );
